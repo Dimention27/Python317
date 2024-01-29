@@ -1742,7 +1742,10 @@ from random import randint
 
 # Ветки
 
-# git branch
+# git branch test - создаём ветку
+# git branch -D test - удаление ветки
+# git branch readme - создание ветки
+# git checkout readme - перейти на ветку
 
 
 
