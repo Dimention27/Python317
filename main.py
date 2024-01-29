@@ -1736,7 +1736,13 @@ from random import randint
 #       --local
 # git config --global user.email "test@mail.ru"
 # git commit -m "first commit" - создание контрольной точки состояния репозитория
-# .gitignore -
+# .gitignore
+# git add .
+# git commit -m "added gitignore"
+
+# Ветки
+
+# git branch
 
 
 
