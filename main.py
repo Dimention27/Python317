@@ -1747,6 +1747,8 @@ from random import randint
 # git branch readme - создание ветки
 # git checkout readme - перейти на ветку
 
+# git merge readme
+
 
 
 
