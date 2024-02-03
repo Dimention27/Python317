@@ -1749,23 +1749,129 @@ from random import randint
 
 # git merge readme
 
+# ____________________________________________________________
+# Занятие 11
+
+# s = ['ab_1', 'ac_2', 'bc_1', 'bc_2']
+# # a = [i for i in s if 'a' not in i]
+# # a = ['A' + x[1:] if x[0] == 'a' else 'B' + x[1:] for x in s]
+# a = {'A' + x[1:] if x[0] == 'a' else 'B' + x[1:] for x in s if x[1] == 'c'}
+# print(a)
+
+# print(['A' + x[1:] if x[0] == 'a' else 'B' + x[1:] for x in ['ab_1', 'ac_2', 'bc_1', 'bc_2'] if x[1] == 'c'])
+
+# тернарное выражение q = True if условие else False
+# lst = []
+# for x in s:
+#     if x[1] == 'c':
+#         if x[0] == 'a':
+#             lst.append('A' + x[1:])
+#         else:
+#             lst.append('B' + x[1:])
+# print(lst)
+
+# Множества
+
+# a = {0, 1, 2, 3}
+# b = {4, 3, 2, 1}
+# c = a.union(b)
+# print(c)
+# a /= b
+# a &= b
+# a -= b
+# a ^= b
 
 
+# Задача
+
+# s1 = {1, 2}
+# s2 = {3}
+# s3 = {4, 5}
+# s4 = {3, 2, 6}
+# s5 = {6}
+# s6 = {7, 8}
+# s7 = {9, 8}
+# # s = s1.union(s2, s3, s4, s5, s6, s7)
+# # или
+# s = s1 | s2 | s3 | s4 | s5 | s6 | s7
+# print(s)
+# print(len(s))
+# print(min(s))
+# print(max(s))
 
 
+# Задача
+
+# s1 = "Hello"
+# s2 = "How are you"
+# print(set(s1) & set(s2))
+
+# или
+
+# s1 = "Hello"
+# s2 = "How are you"
+# s = set(s1) & set(s2)
+# print(s)
+# for i in s:
+#     print(i, end=" ")
 
 
+# Задача
+
+# c1 = set("Python")
+# c2 = set("Programming language")
+# print("Искомыми буквами являются: ", c1-c2)
+
+# Задача
+
+# drawing = {'Марина', 'Женя', 'Света'}
+# music = {'Костя', 'Женя', 'Илья'}
+# one_hobby = drawing ^ music
+# print(one_hobby)
+# both_hobby = drawing & music
+# print(both_hobby)
+#
+# drawing = drawing - both_hobby
+# print(drawing)
 
 
+# a = {0, 1, 2, 3, 4}
+# b = {3, 2, 1}
+# print(a <= b)
+# print(a >= b)
+
+# Словари
+
+# d = {'one': 1, 'two': 2}
+# print(d)
+# print(type(d))
+#
+# d1 = dict(one=1, two=2)
+# print(d1)
+# print(type(d1))
 
 
+# d1 = dict([("one", 1), ("two", 2)])
+# print(d1)
 
 
+# d = {x: x ** 2 for x in range(7)}
+# print(d)
+
+# d = {'one': 1, 'two': 2, "three": 3}
+# print(d)
+# print(len(d))
+# for key in d:
+#     print(key, "->", d[key])
 
 
+# Задача
 
-
-
+# d = {'x1': 3, 'x2': 7, 'x3': 5, 'x4': -1}
+# res = 1
+# for x in d:
+#     res *= d[x]
+# print(res)
 
 
 
