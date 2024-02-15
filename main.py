@@ -1565,6 +1565,7 @@ import time
 
 from random import randint
 
+
 # s = [i for i in range(5)]
 # s = tuple(i for i in range(5))
 # s = tuple(input("-> ") for i in range(5))
@@ -1874,7 +1875,272 @@ from random import randint
 # print(res)
 
 
+# ____________________________________________________________________________
+# Занятие 12
+
+# Задача
+
+# goods = {
+#     "1": ["Core-i3-4330", 9, 4500],
+#     "2": ["Core i5-4670K", 3, 8500],
+#     "3": ["AMD FX-6300", 6, 3700],
+#     "4": ["Pentium G3220", 8, 2100],
+#     "5": ["Core i5-3450", 5, 6400],
+# }
+#
+# for key in goods:
+#     print(key, ") ", goods[key][0], " - ", goods[key][1], " шт. по ", goods[key][2], " руб.", sep="")
+#
+# while True:
+#     n = input("№: ")
+#     if n != "0":
+#         if n in goods:
+#             while True:
+#                 try:
+#                     count = int(input("Кол-во: "))
+#                     goods[n][1] += count
+#                     break
+#                 except ValueError:
+#                     print("Значение некорректное. Введите число")
+#         else:
+#             print("Такого ключа не существует")
+#     else:
+#         break
+#
+#
+# for key in goods:
+#     print(key, ") ", goods[key][0], " - ", goods[key][1], " шт. по ", goods[key][2], " руб.", sep="")
 
 
+# Задача
+
+# d = {
+#     'first': {
+#         1: {
+#             11: "abc",
+#             12: "abc",
+#             113: "abc",
+#         },
+#         2: {
+#             11: "abc"
+#         },
+#         3: {
+#             11: "abc"
+#         }
+#     },
+#     'second': {
+#         4: {
+#             11: "abc"
+#         },
+#         5:  {
+#             11: "abc"
+#         }
+#     }
+# }
+# print(d)
+#
+# for x in d:
+#     print(x)
+#     for y in d[x]:
+#         print("\t", y)
+#         for z in d[x][y]:
+#             print("\t\t", z, ":", d[x][y][z])
+
+# Задача
 
 
+# d = {'один': 1, 'два': 2, 'три': 3, 'четыре': 4}
+# # d2 = {key: key for key in d.items()}
+# d2 = {value: key for key, value in d.items() if value <= 2}
+# print(d2)
+
+# Задача
+
+# a = ['one', 1, 2, 3, 'two', 10, 20, 'three', 15, 36, 60, 'four', -20]
+#
+# d = dict()
+# s = None  # None - первоначальное значение, класс - 'NoneType'(если не знаем, что написать )
+#
+# for i in a:
+#     if type(i) == str:  # {'one': [], 'two': [], 'three': [], 'four': []}
+#         d[i] = []  # d['one'] = []
+#         s = i  # s = 'one'
+#     else:
+#         d[s].append(i)  # d['one'].append(1)
+#
+# print(d)
+
+
+# --------------------------------------------------------------------------------
+# Занятие 13
+
+# zip()
+
+# one = {"name": "Igor", "surname": "Doe", "job": "Consultant"}
+# two = {"name": "Irina", "surname": "Smith", "job": "Manager"}
+
+
+# lst = [(1, 'one'), (2, 'two'), (3, 'three')]
+# a, b = zip(*lst)
+# print(a)   # (1, 2, 3)
+# print(b)   # ('one', 'two', 'three')
+
+
+# a = {"one": 1, 'two': 2}
+# b = {'three': 3, 'four': 4}
+# print({**a, **b})   #
+
+
+# def func(**kwargs):
+#     return kwargs
+#
+#
+# print(func(a=1, b=2, c=3))
+# print(func())
+# print(func(name="Python"))
+
+
+# def intro(**kwargs):
+#     for k, v in kwargs.items():
+#         print(k, "is", v)
+#     print()
+#
+#
+# intro(name="Irina", surname="Sharma", age=22)
+# intro(name="Igor", surname="Wood", email="igor@gmail.com", age=26, phone=987654321)
+
+
+# Задача
+
+# my_dict = {"one": "first"}
+# db(k1=22, k2=31, k4=91)
+# db(name='Bob', age=31, weight=61, eyes_color="grey")
+# print(my_dict)
+
+# name = "Tom"  # глобальная переменная
+#
+#
+# def hi():
+#     global name
+#     name = "Sam"  # локальная переменная
+#     surname = "Johnson"
+#     print("Hello", name, surname)
+#
+#
+# def bye():
+#     print("Good bye", name)
+#
+#
+# print(name)
+# hi()
+# bye()
+# print(name)
+
+
+# _______________________________________________________________________________________
+# Занятие 15
+
+# def outer(a, b, c):
+#     def inner(i, j):
+#         return i * j
+#
+#     s = 2 * (inner(a, b) + inner(a, c) + inner(b, c))
+#     return s
+#
+#
+# print(outer(2, 4, 6))
+# print(outer(5, 8, 2))
+# print(outer(1, 6, 8))
+
+# s = 0
+#
+#
+# def outer(a, b, c):
+#     def inner(i, j):
+#         return i * j
+#
+#     global s
+#     s = 2 * (inner(a, b) + inner(a, c) + inner(b, c))
+#     return s
+#
+#
+# print(s)
+# outer(2, 4, 6)
+# print(s)
+# outer(5, 8, 2)
+# print(s)
+# outer(1, 6, 8)
+# print(s)
+
+
+# def outer(a, b, c):  # 2, 4, 6
+#     s = 0  # 44
+#
+#     def inner(i, j):
+#         nonlocal s
+#         s = s + i * j  # s += i * j   # s = 20 + 24 = 44
+#
+#     inner(a, b)  # 2, 4
+#     inner(a, c)  # 2, 6
+#     inner(b, c)  # 4, 6
+#     return 2 * s  # 2 * 44
+#
+#
+# print(outer(2, 4, 6))
+# print(outer(5, 8, 2))
+# print(outer(1, 6, 8))
+
+
+# Задача
+
+# players = [
+#     {'name': 'Антон', 'last_name': 'Бирюков', 'rating': 9},
+#     {'name': 'Алексей', 'last_name': 'Бодня', 'rating': 10},
+#     {'name': 'Федор', 'last_name': 'Сидоров', 'rating': 4},
+#     {'name': 'Михаил', 'last_name': 'Семенов', 'rating': 6},
+# ]
+#
+# res1 = sorted(players, key=lambda item: item['last_name'])
+# print(res1)
+# res2 = sorted(players, key=lambda item: item['rating'])
+# print(res2)
+# res3 = sorted(players, reverse=True, key=lambda item: item['rating'])
+# print(res3)
+
+# a = [lambda x, y: x + y, lambda x, y: x - y, lambda x, y: x * y]
+# b = a[0](5, 3)
+# print(b)
+
+
+# d = {
+#     1: lambda: print("Понедельник"),
+#     2: lambda: print("Вторник"),
+#     3: lambda: print("Среда"),
+#     4: lambda: print("Четверг"),
+# }
+#
+# d[3]()
+
+# print((lambda a, b: a if a > b else b)(5, 13))
+
+# Задача
+# Создать lambda выражение нахождения минимального значения между тремя числами 9, 8, 5
+
+# print((lambda a, b, c: a if (a < b) and (b < c) else b if b < c else c)(9, 8, 5))
+#
+# print((lambda *args: min(args))(12, 5, 6))
+# print((lambda *args: sorted(args)[0])(2, 5, 6))
+# print((lambda *args: sorted(args)[-1])(2, 5, 6))
+
+# Декораторы
+
+def hello():
+    return 'Hello, I am func "hello"'
+
+
+def super_func(func):
+    print('Hello, I am func "super_func"')
+    print(func())
+
+
+super_func(hello)
