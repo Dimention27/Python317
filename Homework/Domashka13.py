@@ -1,15 +1,12 @@
-students = {}
-n = int(input("Количество студентов: "))
-s = 0
-for key in range(n):
-    name = input(str(key + 1) + "-й студент: ")
-    point = int(input("Балл: "))
-    students[name] = point
-    s += point
+def outer(a, b, c):
+    def inner(i, j):
+        return i * j
 
-average = s / n
-print("Средний балл: ", average, ". Студенты с баллом выше среднего: ")
+    global s
+    s = 2 * (inner(a, b) + inner(a, c) + inner(b, c))
+    return s
 
-for key in students:
-    if students[key] > average:
-        print(key)
+
+print(outer(2, 4, 6))
+print(outer(5, 8, 2))
+print(outer(1, 6, 8))

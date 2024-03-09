@@ -6,6 +6,7 @@
 # age = "hello"
 # print(type(age))
 import random
+import re
 import time
 
 # a = b = c = 1
@@ -1565,7 +1566,6 @@ import time
 
 from random import randint
 
-
 # s = [i for i in range(5)]
 # s = tuple(i for i in range(5))
 # s = tuple(input("-> ") for i in range(5))
@@ -2120,7 +2120,7 @@ from random import randint
 # }
 #
 # d[3]()
-
+#
 # print((lambda a, b: a if a > b else b)(5, 13))
 
 # Задача
@@ -2134,13 +2134,353 @@ from random import randint
 
 # Декораторы
 
-def hello():
-    return 'Hello, I am func "hello"'
+# def hello():
+#     return 'Hello, I am func "hello"'
+#
+#
+# def super_func(func):
+#     print('Hello, I am func "super_func"')
+#     print(func())
+#
+#
+# super_func(hello)
+
+# ______________________________________________________________________________________________________
+# Занятие 18
+
+# Регулярные выражения
+
+# import re
+#
+# s = "Я ищу совпадения в 2024 году. И я их найду в 2 счёта."
+# reg = "я"
+#
+# print(re.findall(reg, s))  # возвращает список содержащий все совпадения
+# print(re.search(reg, s))  # месторасположение первого совпадения с объектом
+# print(re.search(reg, s).span())
+# print(re.search(reg, s).start())
+# print(re.search(reg, s).end())
+# print(re.search(reg, s).group())
+#
+# print(re.match(reg, s))   # поиск совпадения с шаблоном в начале строки
+#
+# print(re.split(reg, s))   # возвращает список, в котором строка разбита по шаблону
+#
+# print(re.sub(reg, "!", s))   # поиск и замена
 
 
-def super_func(func):
-    print('Hello, I am func "super_func"')
-    print(func())
+# s = "Я ищу совпадения в 2024 году. И я их найду в 2 счёта. 198673 Hello"
+# reg = "[21][0-9][0-9][0-9]"
+# reg = "[а-я]"
+# reg = "[А-яЁё]"
+# reg = "[A-Za-z]"
+# reg = "\\." # или r"\."
+# reg = r"[A-Za-z\[\]-]"
+# print(re.findall(reg, s))
+#
+# print(ord('я'))
+# print(ord('ё'))
+
+# Задача
+
+# st = "Час в 24 формате от 00 до 23. 2021-06-15Т21:45. Минуты, в диапазоне от 00 до 59. 2021-06-15Т01:09."
+# pattern = "[0-9][0-9]:[0-9][0-9]"
+# print(re.findall(pattern, st))
+
+# s = "Я ищу совпадения в 2024 году. И я их [найду] в 2 счё-та. 198673 Hel_lo"
+# reg = r"[20]*"
+# print(re.findall(reg, s))
+
+# Кол-во повторений
+# + - от 1 до бесконечности
+# * - от 0 до бесконечности
+# ? - от 0 до 1
+
+# d = "Цифры: 7, +17, -42, 0013, 0.3"
+# reg = r'[+-]?[\d.]+'
+# print(re.findall(reg, d))
 
 
-super_func(hello)
+# s = "05-03-1987 # Дата рождения"
+# print("Дата рождения:", re.sub(r"\s#.*", "", s))
+
+# Дата рождения: 05.03.1987
+# print(re.sub('-', '.', s))
+# print("Дата рождения:", re.sub('-', '.',  re.sub(r"\s#.*", "", s)))
+
+# Задача
+
+# s = "author=Пушкин А.С.; title = Евгений Онегин; price =200; year= 1831"
+# reg = r'\w+\s*=\s*[^;]+'
+# print(re.findall(reg, s))
+
+# _______________________________________________________________________________
+# Занятие 19
+
+# print(re.findall(r"\w+", "12 + й"))
+# print(re.findall(r"\w+", "12 + й", flags=re.ASCII))
+
+
+# text = "Hello world"
+# print(re.findall(r"\w+", text, re.DEBUG))
+
+# s = "Я ищу совпадения в 2024 году. И я их найду в 2 счёта."
+# reg = "я"
+#
+# print(re.findall(reg, s, re.IGNORE CASE))
+# print(re.findall(reg, s, re.I))
+
+
+# text = '''Python,
+# python,
+# PYTHON'''
+#
+# reg = "(?im)^python"
+# print(re.findall(reg, text))
+
+# text = "<body>Пример жадного соответсвия регулярных выражений</body>"
+# print(re.findall("<.*>", text))
+
+# s = "Ольга и Виталий отлично учатся!"
+# reg = "Петр|Ольга|Виталий"
+# print(re.findall(reg, s))
+
+
+# s = "int = 4, float = 4.0f, double = 8.0"
+# reg = r"\w+\s*=\s*\d[.\w+]*"
+# reg = r"(?:int|float)\s*=\s*\d[.\w]*"
+# reg = r"(int|float)\s*=\s*(\d[.\w]*)"
+# print(re.findall(reg, s))
+
+# (?: ....) - группирующая скобка не является сохраняющей
+
+# s = "5 + 7*2 - 4"
+# reg = r"\s*([+*-])\s*"
+# print(re.split(reg, s))
+
+# Задача
+
+# s = "28-02-2024"
+# reg = "(0[1-9]|[1-2][0-9]|3[01])-(0[1-9]|1[0-2])-(19[0-9][0-9]|20[0-9][0-9])"
+# print(re.findall(reg, s))
+# print(re.search(reg, s).group())
+# m = re.search(reg, s)
+# print(m[0])
+# print(m[1])
+# print(m[2])
+# print(m[3])
+
+# text = """
+# Самара
+# Москва
+# Тверь
+# Уфа
+# Казань
+# """
+# count = 0
+#
+#
+# def replace_find(m):
+#     global count
+#     count += 1
+#     return f"<option value=''>{m.group(1)}</option>\n"
+#
+#
+# print(re.sub(r"\s*(\w+)\s*", replace_find, text))
+
+
+# s = "Самолет прилетает 10/23/2024. Будем рады вас видеть после 10/24/2024"  # 23.10.2024  24.10.2024
+# reg = r"(\d{2})/(\d{2})/(\d{4})"
+# print(re.sub(reg, r"\2.\1.\3", s))
+
+
+# s = "yandex.com and yandex.ru"
+# reg = r"([a-z0-9-]{2,}\.[a-z]{2,4})"
+# print(re.sub(reg, r"http://\1", s))
+
+
+# Рекурсия
+
+# def elevator(n):
+#     if n == 0:   # базовый случай
+#         print("Вы в подвале")
+#         return
+#     print("=>", n)
+#     elevator(n - 1)
+#     print(n, end=" ")
+#
+#
+# n1 = int(input("На каком вы этаже: "))
+# elevator(n1)
+
+
+# Задача
+
+# Функция
+
+# def sum_list(lst):
+#     res = 0
+#     for i in lst:
+#         res += i
+#     return res
+
+# print(sum_list([1, 3, 5, 7, 9]))
+
+# Рекурсия
+
+# def sum_list(lst):
+#     if len(lst) == 1:
+#         return lst[0]
+#     else:
+#         return lst[0] + sum_list(lst[1:])
+#
+#
+# print(sum_list([1, 3, 5, 7, 9]))
+
+
+# Задача
+
+# Попробовать дома переводить в 16-ти ричную систему и т.д.
+
+# def to_str(n, base):
+#     convert = "0123456789ABCDEF"
+#     if n < base:
+#         return convert[n]
+#     else:
+#         return to_str(n // base, base) + convert[n % base]
+#
+#
+# print(to_str(18, 10))  # to_str(254, 16) => FE
+
+# _____________________________________________________________________
+
+# Занятие 19
+
+# names = ["Adam", ["Bob", ["Chet", "Cat"], "Bard", "Bert"], "Alex", ["Bea", "Bill"], "Ann"]
+#
+#
+# def count_items(items_list):
+#     count = 0
+#     for item in items_list:
+#         if isinstance(item, list):
+#             count += count_items(item)
+#         else:
+#             count += 1
+#     return count
+#
+#
+# print(count_items(names))
+
+# Файлы
+
+# f = open("test.txt", "r")
+# print(f)
+# print(*f)
+# print(f.closed)
+# f.close()
+
+# f = open("test2.txt", "r")
+# print(f.readlines(26))
+# print(f.readlines())
+# f.close()
+
+# f = open("test2.txt", "r")
+#
+# f.close()
+
+
+# ________________________________________________________________________________________________
+# Занятие 20
+
+# file_name = "res.txt"
+# lst = [4.5, 2.8, 3.9, 1.0, 0.3, 4.33, 7.777 ]
+#
+# def negative_numbers(n):
+#      if not n:
+#          return 0
+#     count = 0
+#     if n[0] < 0:
+#         count += 1
+#     return count + negative_numbers(n[1:])
+#
+#
+# lst = [-2, 3, 8, -11, -4, 6]
+# print(negative_numbers(lst))
+
+# file_name = "res.txt"
+# lst = [4.5, 2.8, 3.9, 1.0, 0.3, 4.33, 7.777]
+#
+#
+# def get_line(lt):
+#     lt = map(str, lt)
+#     return ' '.join(lt)
+#
+#
+# with open(file_name, 'w') as f:
+#     #     # f.write(str(lst))
+#     f.write(get_line(lst))
+#
+# with open(file_name, 'r') as f:
+#     st = f.read()
+#
+# print(st)
+# print(type(st))
+#
+# nums = list(map(float, st.split()))
+# print(nums)
+# print(type(nums[0]))
+
+
+# Задача
+
+# def longest_worlds(file):
+#     with open(file, 'r', encoding="utf-8") as text:
+#         w = text.read().split()
+#         print(w)
+#         max_length = len(max(w, key=len))
+#         print(max_length)
+#         res = [i for i in w if len(i) == max_length]
+#         if len(res) == 1:
+#             return res[0]
+#         return res
+#
+#
+# print(longest_worlds('test.txt'))
+
+
+# Задача
+
+# with open('one.txt', 'r') as fr, open('two.txt', 'w') as fw:
+#     for line in fr:
+#         line = line.replace("Строка", "Линия -")
+#         fw.write(line)
+
+
+# Модуль OS, OS.PATH
+
+# import os
+
+# print(os.getcwd())  # возвращает текущую директорию
+# print(os.listdir())  # список директорий и файлов
+# print(os.listdir("..."))
+
+# os.mkdir("folder1")  # создает папку
+# os.makedirs("nested1/nested2/nested3")  # создает конечную директорию вместе с промежуточными
+#
+# os.rmdir("folder1")  # удаление пустой папки
+# os.rmdir("nested1/nested2/nested3")
+
+# os.remove("xyz1.txt") # удаление файла
+#
+# os.rename("xyz.txt", "new.txt")  # переименование файла и папки
+# os.rename("folder", "new")
+
+# os.rename("two.txt", "nested1/two1.txt")
+# os.rename("two.txt", "nested1/nested3/two.txt")  # переименование файла и папки, перемещает документы,
+# создавая промежуточные директории
+
+
+
+
+
+
