@@ -5,6 +5,7 @@
 # print(id(age))
 # age = "hello"
 # print(type(age))
+import os.path
 import random
 import re
 import time
@@ -2391,9 +2392,6 @@ from random import randint
 
 # ________________________________________________________________________________________________
 # Занятие 20
-
-# file_name = "res.txt"
-# lst = [4.5, 2.8, 3.9, 1.0, 0.3, 4.33, 7.777 ]
 #
 # def negative_numbers(n):
 #      if not n:
@@ -2409,6 +2407,22 @@ from random import randint
 
 # file_name = "res.txt"
 # lst = [4.5, 2.8, 3.9, 1.0, 0.3, 4.33, 7.777]
+#
+# def get_line(lt):
+#     lt = list(map(str, lt))
+#     return ' '.join(lt)
+#
+#
+# with open(file_name, 'w') as f:
+#     # f.write(str(lst))
+#     f.write(get_line(lst))
+#
+# with open(file_name, 'r') as f:
+#     st = f.read()
+#
+# print(st)
+# print(type(st))
+# print("Done!")
 #
 #
 # def get_line(lt):
@@ -2447,9 +2461,13 @@ from random import randint
 #
 # print(longest_worlds('test.txt'))
 
-
 # Задача
 
+# text = "Строка №1\nСтрока №2\nСтрока №3\nСтрока №4\nСтрока №5\nСтрока №6\nСтрока №7\nСтрока №8\nСтрока №9\nСтрока №10\n"
+#
+# with open('one.txt', 'w') as f:
+#     f.write(text)
+#
 # with open('one.txt', 'r') as fr, open('two.txt', 'w') as fw:
 #     for line in fr:
 #         line = line.replace("Строка", "Линия -")
@@ -2459,25 +2477,376 @@ from random import randint
 # Модуль OS, OS.PATH
 
 # import os
+#
+# import os.path
 
 # print(os.getcwd())  # возвращает текущую директорию
 # print(os.listdir())  # список директорий и файлов
-# print(os.listdir("..."))
+# print(os.listdir(".."))
 
 # os.mkdir("folder1")  # создает папку
 # os.makedirs("nested1/nested2/nested3")  # создает конечную директорию вместе с промежуточными
-#
+
 # os.rmdir("folder1")  # удаление пустой папки
 # os.rmdir("nested1/nested2/nested3")
 
-# os.remove("xyz1.txt") # удаление файла
-#
+# os.remove("xyz1.txt")  # удаление файла
+
 # os.rename("xyz.txt", "new.txt")  # переименование файла и папки
 # os.rename("folder", "new")
 
 # os.rename("two.txt", "nested1/two1.txt")
-# os.rename("two.txt", "nested1/nested3/two.txt")  # переименование файла и папки, перемещает документы,
+# os.renames("test.txt", "nested1/nested3/two.txt")  # переименование файла и папки, перемещает документы,
 # создавая промежуточные директории
+
+
+# for root, dirs, files in os.walk("nested1", topdown=False):
+#     print("Root:", root)
+#     print("\tSubdirs:", dirs)
+#     print("\t\tFiles:", files)
+
+# Задача
+# def remove_empty_dirs(root_tree):
+#     print(f"Удаление пустых директорий в ветви {root_tree}")
+#     print('-' * 50)
+#     for root, dirs, files in os.walk(root_tree):
+#         if not os.listdir(root):
+#             os.rmdir(root)
+#             print(f"Директория {root} удалена.")
+#     print('-' * 50)
+# #
+# remove_empty_dirs("nested1")
+#
+#
+# print(os.path.split(r"D:\Python317\317\nested1\nested2\nested4\text.txt"))  # [1]
+#
+# print(os.path.join('nested4', r'D:\Python317', '317', 'nested1', 'nested2', 'text.txt'))
+
+# Задача
+
+# dirs = [r'Work\F1', r'Work\F2\F21']
+# for d in dirs:
+#     os.makedirs(d)
+
+# files = {
+#     'Work': ['w.txt'],
+#     r'Work\F1': ['f11.txt', 'f12.txt', 'f13.txt'],
+#     r'Work\F2\F21': ['f211.txt', 'f212.txt']
+# }
+#
+# for dir1, files in files.items():
+#     for file in files:
+#         file_path = os.path.join(dir1, file)
+#         open(file_path, 'w').close()
+#
+# file_with_text = [r'Work\w.txt', r'Work\F1\f12.txt', r'Work\F2\F21\f211.txt', r'Work\F2\F21\f212.txt']
+#
+# for file in file_with_text:
+#     with open(file, 'w') as f:
+#         f.write(f"Текст в файле {file}")
+
+# Work\w.txt
+# Work\F1\f11.txt
+# Work\F1\f12.txt
+# Work\F1\f13.txt
+# Work\F2\F21\f211.txt
+# Work\F2\F21\f212.txt
+
+
+# ___________________________________________________________________
+
+# Занятие 21
+
+# b = os.path.getsize(r'main.py')
+# print(b, "байт")
+# print(b // 1024, "килобайт")
+
+# import time
+#
+# path = "main.py"
+# print(os.path.getctime(path))  # возвращает время создания файла
+# print(os.path.getatime(path))  # возвращает время последнего доступа к файлу
+# print(os.path.getmtime(path))  # возвращает время последнего изменения файла (в секундах)
+#
+# print(time.strftime("%d.%m.%Y, %H:%M:%S", time.localtime(os.path.getctime(path))))
+# print(time.strftime("%d.%m.%Y, %H:%M:%S", time.localtime(os.path.getatime(path))))
+# print(time.strftime("%d.%m.%Y, %H:%M:%S", time.localtime(os.path.getmtime(path))))
+
+# class Point:
+#     """Класс для предоставления координат на плоскости"""
+#     x = 1
+#     y = 1
+#
+#
+# p1 = Point()
+# print(p1.x)
+# print(type(p1))
+# a = 5
+# print(type(a))
+# print(Point.__doc__)
+# print(Point.__name__)
+# print(dir(Point))
+
+
+# class Point:
+#     """Класс для предоставления координат на плоскости"""
+#     x = 1
+#     y = 1
+#
+#
+# p1 = Point()
+# p1.x = 10
+# p1.y = 20
+# p1.z = 30
+# print(p1.x, p1.y, p1.z)
+# print(p1.__dict__)
+#
+# p2 = Point()
+# p2.x = 100
+# p2.y = 200
+# print(p2.x, p2.y)
+# print(p2.__dict__)
+
+
+# class Point:
+#     x = 1
+#     y = 1
+#
+#     def set_coord(self, a, b):
+#         self.x = a
+#         self.y = b
+#         print(self.__dict__)
+#
+#
+# p1 = Point()
+# # p1.x = 5
+# # p1.y = 10
+# p1.set_coord(5, 10)
+# # Point.set_coord(p1)
+#
+# p2 = Point()
+# # p2.x = 50
+# # p2.y = 100
+# p2.set_coord(50, 100)
+# # Point.set_coord(p2)
+
+
+# Задача
+# Реализуйте класс "Человек"
+
+# class Human:
+#     name = "name"
+#     birthday = "00.00.0000"
+#     phone = "00-00-00"
+#     country = "country"
+#     city = "city"
+#     address = "street address"
+#
+#     def print_info(self):
+#         print("Персональные данные".center(40, "*"))
+#
+#         print("=" * 40)
+#
+#
+# h1 = Human()
+# h1.print_info()
+
+
+#__________________________________________________________________________________________________________________________
+
+# Занятие 28
+
+# def string_strip(chars):
+#     def wrap(string):
+#         if not isinstance(string, str):
+#             raise ValueError("Аргумент должен быть строкой")
+#         return string.strip(chars)
+#
+#     return wrap
+#
+#
+# s1 = string_strip("?:!.; ")
+# print(s1)
+# print(s1(" :?.Hello World! "))
+#
+#
+# class StripChars:
+#     def __init__(self, chars):
+#         self.__chars = chars
+#
+#     def __call__(self, *args, **kwargs):
+#         if not isinstance(args[0], str):
+#             raise ValueError("Аргумент должен быть строкой")
+#
+#         return args[0].strip(self.__chars)
+#
+#
+# s2 = StripChars("?:!.; ")
+# print(s2(" :?.Hello World! "))
+
+
+
+# Класс как декоратор
+
+
+# class MyDecorator:
+#     def __init__(self, fn):
+#         self.fn = fn
+# 
+#     def __call__(self):
+#         print('Перед вызовом функции')
+#         self.fn()
+#         print('После вызова функции')
+# 
+# 
+# @MyDecorator
+# def func(a, b):
+#     return a * b
+# 
+# 
+# print(func(2, 5))
+# def func():
+#     print("Hello World!")
+# 
+# 
+# func()
+
+#_____________________________
+# Занятие 29
+
+# Метаклассы
+
+# a = 5
+# print(type(a))
+# print(type(int))
+
+
+# class MyList(list):
+#     def get_length(self):
+#         return len(self)
+
+
+# lst = MyList()
+# lst.append(5)
+# lst.append(7)
+# print(lst, lst.get_length())
+
+# Создание модулей
+
+# class Rectangle:
+#     def __init__(self, w, h):
+#         self.w = w
+#         self.h = h
+#
+#     def get_perimetr(self):
+#         return 2 * (self.w + self.h)
+#
+#
+# class Square:
+#     def __init__(self, a):
+#         self.a = a
+#
+#     def get_perimetr(self):
+#         return 4 * self.a
+#
+#
+# class Triangle:
+#     def __init__(self, a, b, c):
+#         self.a = a
+#         self.b = b
+#         self.c = c
+#
+#     def get_perimetr(self):
+#         return self.a + self.b + self.c
+#
+#
+# r1 = Rectangle(1, 2)
+# r2 = Rectangle(3, 4)
+#
+# s1 = Square(10)
+# s2 = Square(20)
+#
+# t1 = Triangle(1, 2, 3)
+# t2 = Triangle(4, 5, 6)
+#
+# shape = [r1, r2, s1, s2, t1, t2]
+#
+# for g in shape:
+#     print(g.get_perimetr())
+
+
+#______________________________________________________________________________
+# Занятие 40
+
+# Шаблонизатор (Jinja)
+
+# from jinja2 import Template
+#
+# # name = "Игорь"
+# # age = 28
+# per = {"name": "Игорь", "age": 28}
+#
+# # tm = Template("Мне {{ a }} лет. Меня зовут {{ n }}.")
+# tm = Template("Мне {{ p.age }} лет. Меня зовут {{ p['name'] }}.")
+# # msg = tm.render(n=name, a=age)
+# msg = tm.render(p=per)
+#
+# print(msg)
+
+# class Person:
+#     def __init__(self, name, age):
+#         self.name = name
+#         self.age = age
+#     def get_name(self):
+#         return self.name
+#
+#
+# per = Person("Игорь", 28)
+#
+# tm = Template("Мне {{ p.age }} лет. Меня зовут {{ p.get_name() }}.")
+# msg = tm.render(p=per)
+#
+# print(msg)
+
+# cities = [
+#     {"id": 1, "city": "Москва"},
+#     {"id": 2, "city": "Сочи"},
+#     {"id": 3, "city": "Смоленск"},
+#     {"id": 4, "city": "Ярославль"},
+#     {"id": 5, "city": "Минск"}
+# ]
+#
+# link = """
+# <select name='cities'>
+#     {% for c in cities %}
+#         <option value="{{ c['id'] }}">{{ c['city'] }}</option>
+#     {% endfor %}
+# </select>
+# """
+#
+# tm = Template(link)
+# msg = tm.render()
+#
+# print(msg)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
